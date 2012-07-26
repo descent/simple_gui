@@ -1,0 +1,46 @@
+這份文件描述此程式的建構原理、方法。
+
+此程式是根據 MVC 架構來完成的。
+
+message 和 event 在我來說：是相同的東西，在一些文件裡有時稱事件，
+                           有時稱訊息 ( message )。
+                           而傳遞訊息或傳遞事件是同樣的事情。
+                           接收的函式會依照該 event 或是 message 去處理。
+
+事件傳遞函式如：from_controll、key_event 等。若處理完該 event 會傳回 true。
+                若沒有處理該 event 則傳回 false。
+事件傳遞方式：
+        model
+                model 是 abstract class。
+                有 from_view 和 key_event 用來傳遞事件的發生。
+
+                from_controll()：
+                model 的 from_controll 不是 virtual function，
+                有需要的 model 在自行產生 from_controll() member function。
+                ex: 當向 timer 等之類的 controller 申請時，就需要產生
+                from_controll() member function。讓 timer 可以藉由 
+                model::from_controll() 來呼叫。
+
+        view
+                有 from_view、dispatch 和 key_event 用來傳遞事件的發生。
+
+                from_controll：若 event 的 receiver 為 0 或是 receiver
+                是自己的話。就檢察 event 是否為 evKeyDown。
+                若 event 是 evKeyDown 就執行 View::key_event()。
+                若 View::key_event() 傳回 false (表示 View::key_event() 沒有處理                這個 event )，就將 event 傳給和此 view 連結的 model (以 Model::
+                from_view() 來傳給該 model)
+
+                view::key_event() 永遠傳回 false。表示不處理該 event。
+
+        desktop
+
+        
+reference:
+        
+        [古清德，1995] 古清德：事件式驅動程式設計。旗標出版。
+                       ISBN 957-717-113-3 1995/03
+
+        [賀元、賴明宗、劉燈，1993] 賀元、賴明宗、劉燈：世紀末軟體革命 C++，GUI 與物件導向理論。傅徵出版。
+                       ISBN 957-99965-0-4 1993/12
+                
+
