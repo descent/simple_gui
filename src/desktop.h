@@ -226,7 +226,7 @@ namespace DS
    {
     //mvaddch(y,x,ACS_BOARD | COLOR_PAIR(1));
     mvaddch(y,x,'O' | A_ALTCHARSET | A_BOLD | COLOR_PAIR(LView::_color_pair_num));
-    mvaddch(y,x,bg_char | A_ALTCHARSET | A_BOLD | COLOR_PAIR(_color_pair_num));
+    //mvaddch(y,x,bg_char | A_ALTCHARSET | A_BOLD | COLOR_PAIR(_color_pair_num));
    }
   //std::ofstream log_file("log.log");
   //log_file << _color_pair_num << std::endl;
