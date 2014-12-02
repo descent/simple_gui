@@ -1,14 +1,19 @@
 #include "box.h"
 
+// ACS_VLINE, ACS_HLINE cannot be used static/global variable,
+// the graphic is wrong.
+// double line I don't find ACS_XXX, so use the simple char to show frame.
+
 // single,double
 // 第一個是單線條，第二個是雙線條
 // 可用 _tl[SL] _tl[DL] 來使用單或雙線條
-unsigned char DS::Box::_tl[]={218,201};
-unsigned char DS::Box::_tr[]={191,187};
-unsigned char DS::Box::_bl[]={192,200};
-unsigned char DS::Box::_br[]={217,188};
-unsigned char DS::Box::_hl[]={196,205};
-unsigned char DS::Box::_vl[]={179,186};
+unsigned char DS::Box::_tl[]={'+', '+'};
+unsigned char DS::Box::_tr[]={'+', '+'};
+unsigned char DS::Box::_bl[]={'+', '+'};
+unsigned char DS::Box::_br[]={'+', '+'};
+unsigned char DS::Box::_hl[]={'-', '='};
+unsigned char DS::Box::_vl[]={'|', '|'};
+
 
 void DS::Box::draw_title()
 {
@@ -48,8 +53,9 @@ void DS::Box::draw_frame()
   mvaddch(_rect.tl().y(),x,205 | A_ALTCHARSET | COLOR_PAIR(2));
   mvaddch(_rect.br().y()-1,x,205 | A_ALTCHARSET | COLOR_PAIR(2));
   */
-  mvaddch(_rect.tl().y(),x,_hl[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
-  mvaddch(_rect.br().y()-1,x,_hl[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
+  mvaddch(_rect.tl().y(),x,_hl[_frame_kind] | COLOR_PAIR(_color_pair_num));
+  mvaddch(_rect.br().y()-1,x,_hl[_frame_kind] | COLOR_PAIR(_color_pair_num));
+  //mvaddch(_rect.br().y()-1,x, 205 + A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
  }
 
 
@@ -62,8 +68,8 @@ void DS::Box::draw_frame()
   mvaddch(y,_rect.tl().x(),186 | A_ALTCHARSET | COLOR_PAIR(2));
   mvaddch(y,_rect.br().x()-1,186 | A_ALTCHARSET | COLOR_PAIR(2));
   */
-  mvaddch(y,_rect.tl().x(),_vl[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
-  mvaddch(y,_rect.br().x()-1,_vl[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
+  mvaddch(y,_rect.tl().x(),_vl[_frame_kind] | COLOR_PAIR(_color_pair_num));
+  mvaddch(y,_rect.br().x()-1,_vl[_frame_kind] | COLOR_PAIR(_color_pair_num));
  }
  //畫四個角
  /*
@@ -76,11 +82,9 @@ void DS::Box::draw_frame()
  mvaddch(_rect.br().y()-1,_rect.tl().x(),200 | A_ALTCHARSET | COLOR_PAIR(2));
  mvaddch(_rect.br().y()-1,_rect.br().x()-1,188 | A_ALTCHARSET | COLOR_PAIR(2));
  */
- mvaddch(_rect.tl().y(),_rect.tl().x(),_tl[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
- mvaddch(_rect.tl().y(),_rect.br().x()-1,_tr[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
- mvaddch(_rect.br().y()-1,_rect.tl().x(),_bl[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
- mvaddch(_rect.br().y()-1,_rect.br().x()-1,_br[_frame_kind] | A_ALTCHARSET | COLOR_PAIR(_color_pair_num));
-
-
+ mvaddch(_rect.tl().y(),_rect.tl().x(),_tl[_frame_kind] | COLOR_PAIR(_color_pair_num));
+ mvaddch(_rect.tl().y(),_rect.br().x()-1,_tr[_frame_kind] | COLOR_PAIR(_color_pair_num));
+ mvaddch(_rect.br().y()-1,_rect.tl().x(),_bl[_frame_kind] | COLOR_PAIR(_color_pair_num));
+ mvaddch(_rect.br().y()-1,_rect.br().x()-1,_br[_frame_kind] | COLOR_PAIR(_color_pair_num));
 
 }
