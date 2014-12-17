@@ -3,7 +3,7 @@
  * $Author$
  * $Id$
  * $Date$
- * µ{¦¡¥\¯à¡G´ú¸Õ MVC ¨t²Î
+ * ç¨‹å¼åŠŸèƒ½ï¼šæ¸¬è©¦ MVC ç³»çµ±
  */
 #include "controller.h"
 #include "model.h"
@@ -14,8 +14,8 @@
 using std::ifstream;
 using std::ofstream;
 
-  // ³o¬O¤lµ{¦¡¼Ò²Õ¡A¥Ñ¥Dµ{¦¡¼Ò²Õ²£¥Í¡C¥¦­t³d½Ï¥Í¤@­Ó View ¡A¨ÃÂÇ¥Ñ¥Ó½Ğ¤@­Ó®É¶¡
-  // ¨Æ¥ó¨Ó§ó·s³o­Ó View ªº¤º®eÅã¥Ü¡C
+  // é€™æ˜¯å­ç¨‹å¼æ¨¡çµ„ï¼Œç”±ä¸»ç¨‹å¼æ¨¡çµ„ç”¢ç”Ÿã€‚å®ƒè² è²¬èª•ç”Ÿä¸€å€‹ View ï¼Œä¸¦è—‰ç”±ç”³è«‹ä¸€å€‹æ™‚é–“
+  // äº‹ä»¶ä¾†æ›´æ–°é€™å€‹ View çš„å…§å®¹é¡¯ç¤ºã€‚
 class ShowModel : public DS::Model
 {
  public:
@@ -27,11 +27,11 @@ class ShowModel : public DS::Model
 
   protected:
    //static _count;
-   DS::View *_view;  // °O¿ı©Ò½Ï¥Íªº View ªº«ü¼Ğ
-   char count[30];  // ¦s©ñ¤@¦CÅã¥Ü¤l¦ê
-   int i; // ¦¹ÅÜ¼Æ°O¿ı¦b View ùØÅã¥Ü¤F´X¦Cªº¦r¦ê¡C
-   int _id; // ShowModel ªº½s¸¹
-   static int _total_ShowModel; //¥i¥H¥Î¨Ó¬ö¿ı¥Ø«e¦³¦h¤Öªº ShowModel 
+   DS::View *_view;  // è¨˜éŒ„æ‰€èª•ç”Ÿçš„ View çš„æŒ‡æ¨™
+   char count[30];  // å­˜æ”¾ä¸€åˆ—é¡¯ç¤ºå­ä¸²
+   int i; // æ­¤è®Šæ•¸è¨˜éŒ„åœ¨ View è£é¡¯ç¤ºäº†å¹¾åˆ—çš„å­—ä¸²ã€‚
+   int _id; // ShowModel çš„ç·¨è™Ÿ
+   static int _total_ShowModel; //å¯ä»¥ç”¨ä¾†ç´€éŒ„ç›®å‰æœ‰å¤šå°‘çš„ ShowModel 
 };
 int ShowModel :: _total_ShowModel=-1;
 
@@ -41,7 +41,7 @@ ShowModel::ShowModel( int  no ):_id(0)
  _id = ++_total_ShowModel;
  static int x=1,y=1;
     sprintf( count,"%d%d%d%d%d%d%d%d",no,no,no,no,no,no,no,no );
-     // ½Ï¥Í¤@­Ó View
+     // èª•ç”Ÿä¸€å€‹ View
   //_view =new DS::View( this,x++,y++,32+x,7+y,COLOR_MAGENTA,COLOR_GREEN ,COLOR_WHITE,COLOR_CYAN );
   //_view =new DS::View( this,x++,y++,32+x,7+y,COLOR_MAGENTA,COLOR_GREEN);
   _view =new DS::View( this,x++,y++,32+x,7+y,COLOR_WHITE,COLOR_BLUE);
@@ -49,25 +49,25 @@ ShowModel::ShowModel( int  no ):_id(0)
  format << "View " << _id;
   _view->set_title(format.str());
 
-    //view->move( random(45),random(17) );   // ¤£Åı View ¤¬¬Û­«Å|
+    //view->move( random(45),random(17) );   // ä¸è®“ View äº’ç›¸é‡ç–Š
     //_view->move(x++,y++);
     desktop->push_back_view( _view );
 
-    //timer->apply( this ,300 );  // ¥Ó½Ğ¤@­Ó®É¶¡¨Æ¥ó§@¬°§ó·s View ¤º®e¤§¥Î
+    //timer->apply( this ,300 );  // ç”³è«‹ä¸€å€‹æ™‚é–“äº‹ä»¶ä½œç‚ºæ›´æ–° View å…§å®¹ä¹‹ç”¨
     i = 0;
 }
 
 ShowModel::~ShowModel()
 {
-   //timer->remove( this );    // ¥Ó½Ğªº®É¶¡¨Æ¥ó­n°O±o¨ú®ø
+   //timer->remove( this );    // ç”³è«‹çš„æ™‚é–“äº‹ä»¶è¦è¨˜å¾—å–æ¶ˆ
  //std::ofstream of("smodel");
  //of << "in ShowModel::~ShowModel() " << std::endl;
- desktop->remove_view( _view);   // °O±o³o¹D¤âÄò³Ì«á¤~°µ
+ desktop->remove_view( _view);   // è¨˜å¾—é€™é“æ‰‹çºŒæœ€å¾Œæ‰åš
 }
 
 int ShowModel::key_event( DS::Event &event )
 {
- // ­Y¨Ï¥ÎªÌ«ö¤U¤F 0 - 9 ¤§¶¡ªº¼Æ¦r«öÁä ,View ¤¤«K·|¨q¥X "You Press a key !!"
+ // è‹¥ä½¿ç”¨è€…æŒ‰ä¸‹äº† 0 - 9 ä¹‹é–“çš„æ•¸å­—æŒ‰éµ ,View ä¸­ä¾¿æœƒç§€å‡º "You Press a key !!"
  if( event.keydown() >= '0' && event.keydown() <= '9' )
  {    
   int color_pair = DS::ColorPair::get_color_pair(COLOR_CYAN,COLOR_RED);
@@ -82,12 +82,12 @@ int ShowModel::key_event( DS::Event &event )
  return 0;
 }
 
-// ¥Ñ¼Ò²Õª½±µ¥Ó½Ğªº±±¨î¾¹ ,¦³¨Æ¥óµo¥Í®É¨Ã¤£¸g¥Ñ View ,¦Óª½±µ©I¥s¥Ó½Ğ¼Ò²Õªº¦¹¨ç¦¡;
-// ³]­pªÌ¥iÂÇ¥Ñ¦¹¨ç¦¡©w®É§ó·s View ªºµe­± ,¹F¨ì¤À®É¦h¤uªº®ÄªG
+// ç”±æ¨¡çµ„ç›´æ¥ç”³è«‹çš„æ§åˆ¶å™¨ ,æœ‰äº‹ä»¶ç™¼ç”Ÿæ™‚ä¸¦ä¸ç¶“ç”± View ,è€Œç›´æ¥å‘¼å«ç”³è«‹æ¨¡çµ„çš„æ­¤å‡½å¼;
+// è¨­è¨ˆè€…å¯è—‰ç”±æ­¤å‡½å¼å®šæ™‚æ›´æ–° View çš„ç•«é¢ ,é”åˆ°åˆ†æ™‚å¤šå·¥çš„æ•ˆæœ
 int ShowModel::from_control( DS::Event &event )
 {
 /*
-     // ­p¼Æ¾¹¨C¼Æ¨ì 16 ¡A«K²M°£ View ¤¤©Ò¦³ªº¦r¦ê¡A­«·s¶}©l¡C
+     // è¨ˆæ•¸å™¨æ¯æ•¸åˆ° 16 ï¼Œä¾¿æ¸…é™¤ View ä¸­æ‰€æœ‰çš„å­—ä¸²ï¼Œé‡æ–°é–‹å§‹ã€‚
    if( i >16 )
       {  view->delAllStrs();
          i = 0;  }
@@ -100,7 +100,7 @@ int ShowModel::from_control( DS::Event &event )
 }
 
 
-class MyApp :public DS::Model     // ¥DÀ³¥Îµ{¦¡¼Ò²Õ
+class MyApp :public DS::Model     // ä¸»æ‡‰ç”¨ç¨‹å¼æ¨¡çµ„
 {
   public:
    MyApp();
@@ -110,11 +110,11 @@ class MyApp :public DS::Model     // ¥DÀ³¥Îµ{¦¡¼Ò²Õ
    ~MyApp();
 
   protected:
-   int cnt;  // °O¿ı¥Ø«e Model ªº¼Æ¥Ø
-   bool moveFlag; // °O¿ı¥Ø«e¬O§_¦b move ª¬ºA
+   int cnt;  // è¨˜éŒ„ç›®å‰ Model çš„æ•¸ç›®
+   bool moveFlag; // è¨˜éŒ„ç›®å‰æ˜¯å¦åœ¨ move ç‹€æ…‹
 };
 
-   // µ{¦¡Â÷¶}«e°õ¦æªº°Ê§@
+   // ç¨‹å¼é›¢é–‹å‰åŸ·è¡Œçš„å‹•ä½œ
 bool MyApp::close(DS::View *view)
 {
   DS::Box end( 19,12,60,14, COLOR_WHITE,COLOR_RED );
@@ -126,11 +126,11 @@ bool MyApp::close(DS::View *view)
 }
 MyApp::MyApp() : cnt(0),moveFlag( FALSE )
 {
-  desktop->link( this );  // ±N¦¹¼Ò²Õ»P®à­±Ãìµ²
-  timer->apply( this ,200);  // ¹Á¸Õ¥Ó½Ğ Timer and Idler ¨â­Ó±±¨î¾¹
+  desktop->link( this );  // å°‡æ­¤æ¨¡çµ„èˆ‡æ¡Œé¢éˆçµ
+  timer->apply( this ,200);  // å˜—è©¦ç”³è«‹ Timer and Idler å…©å€‹æ§åˆ¶å™¨
   //idler->apply( this );
 
- // ¦¹¬qµe¥Ø¿ı¦C
+ // æ­¤æ®µç•«ç›®éŒ„åˆ—
 }
 
 MyApp::~MyApp()
@@ -142,7 +142,7 @@ MyApp::~MyApp()
 
 
 
-// ®à­±¤¤¡A¤l View ¨S¦³³B²zªºÁä½L¨Æ¥ó¥Ñ¦¹Ä~Äò³B²z
+// æ¡Œé¢ä¸­ï¼Œå­ View æ²’æœ‰è™•ç†çš„éµç›¤äº‹ä»¶ç”±æ­¤ç¹¼çºŒè™•ç†
 int MyApp::key_event( DS::Event &event )
 {
  enum Status {NORMAL=0,MOVE,GROW,FOCUS};
@@ -153,7 +153,7 @@ int MyApp::key_event( DS::Event &event )
 
  switch( event.keydown())
  {
-  // ­Y¨Ï¥ÎªÌ«ö¤U q ¡A«hµ{¦¡Â÷¶}¡C
+  // è‹¥ä½¿ç”¨è€…æŒ‰ä¸‹ q ï¼Œå‰‡ç¨‹å¼é›¢é–‹ã€‚
   case 'q' :  
   {
    event.set_event(DS::evExit);
@@ -225,8 +225,8 @@ int MyApp::key_event( DS::Event &event )
    break;
   }
   case KEY_RIGHT :
-  { // ±N desktop->show ¥Î³o¼Ëªº¼gªk¤~¤£·|¨C¦¸³£­n­«µe desktop
-    // ¥u¦³¦b move ©M grow ¤~·|­«µe
+  { // å°‡ desktop->show ç”¨é€™æ¨£çš„å¯«æ³•æ‰ä¸æœƒæ¯æ¬¡éƒ½è¦é‡ç•« desktop
+    // åªæœ‰åœ¨ move å’Œ grow æ‰æœƒé‡ç•«
    if (status==MOVE)
    {
     desktop->move(1,0,desktop->cur_focus());
@@ -240,9 +240,10 @@ int MyApp::key_event( DS::Event &event )
    break;
   }
 
-  // «ö F3 ·|½Ï¥Í¤@­Ó¤l Model ¡F¦Ó¦¹¤l Model ·|¦bºc«ØªÌ¨ç¦¡¤¤
-  //  new ¤@­Ó View ¡AµM«á¥[¤J®à­±¡C
-  case KEY_F(3) :
+  // æŒ‰ F5 æœƒèª•ç”Ÿä¸€å€‹å­ Model ï¼›è€Œæ­¤å­ Model æœƒåœ¨æ§‹å»ºè€…å‡½å¼ä¸­
+  // new ä¸€å€‹ View ï¼Œç„¶å¾ŒåŠ å…¥æ¡Œé¢ã€‚
+  // åŸæœ¬æ˜¯ F3, ä½†æ˜¯å’Œæˆ‘è¨­å®šçš„çµ‚ç«¯æ©Ÿ hotkey è¡çª, æ‰€ä»¥æ”¹ F5
+  case KEY_F(5) :
   {
    new ShowModel( cnt );
    //desktop->focus(desktop->cur_focus());
@@ -267,18 +268,18 @@ int MyApp::key_event( DS::Event &event )
   }
 
   /*
-         // «ö Alt + F3 ±N±ş¥h»P®à­±ºİ View Ãìµ²ªº Model ¡A¦Ó¦¹ Model ¦bºc°£ªÌ
-         // ¨ç¦¡¤¤¡A¦A­n¨D®à­±±ş¥h¦¹ View ¡C
+         // æŒ‰ Alt + F3 å°‡æ®ºå»èˆ‡æ¡Œé¢ç«¯ View éˆçµçš„ Model ï¼Œè€Œæ­¤ Model åœ¨æ§‹é™¤è€…
+         // å‡½å¼ä¸­ï¼Œå†è¦æ±‚æ¡Œé¢æ®ºå»æ­¤ View ã€‚
        case kbAltF3 : if( desktop->getViewQnty() )
-                          delete desktop->getTopView()->getModel() ; // ±ş¥h¼Ò²Õ
+                          delete desktop->getTopView()->getModel() ; // æ®ºå»æ¨¡çµ„
                       break;
-         // «ö Alt + D ¬O DOS SHELL ªº¥\¯à
+         // æŒ‰ Alt + D æ˜¯ DOS SHELL çš„åŠŸèƒ½
        case kbAltD  : system( "\command.com" );
                       break;
-         // «ö Alt + F5 ¯à¨Ï®à­±³»ºİªº View ¦b³Ì¤j¤Æ©MÁÙ­ì¤§¶¡¤Á´«¡C
+         // æŒ‰ Alt + F5 èƒ½ä½¿æ¡Œé¢é ‚ç«¯çš„ View åœ¨æœ€å¤§åŒ–å’Œé‚„åŸä¹‹é–“åˆ‡æ›ã€‚
        case kbF5    : desktop->maxTop();
                       break;
-         // «ö Alt+ (2-9) ¤À§O±N Top-View ©³¤Uªº View ²¾¨ì³»ºİ¨Ó¡C
+         // æŒ‰ Alt+ (2-9) åˆ†åˆ¥å°‡ Top-View åº•ä¸‹çš„ View ç§»åˆ°é ‚ç«¯ä¾†ã€‚
        case kbAlt2  : desktop->top( 2 );
                       break;
        case kbAlt3  : desktop->top( 3 );
@@ -295,20 +296,20 @@ int MyApp::key_event( DS::Event &event )
                       break;
        case kbAlt9  : desktop->top( 9 );
                       break;
-         // ¶}©l move ª¬ºA
+         // é–‹å§‹ move ç‹€æ…‹
        case kbAltM  : desktop->onMoveTop();
                       desktop->lockKeyTop();
                       moveFlag = TRUE;
                       break;
-         // µ²§ô move ª¬ºA
+         // çµæŸ move ç‹€æ…‹
    // 10 is ENTER key 
    case 10 : desktop->offMoveTop();
                       desktop->unlockKeyTop();
                       moveFlag = FALSE;
                       break;
-         // «ö Alt + (Up¡BDown¡BLeft¡BRight) ¬°²¾°Ê©Î©ñ¤jÁY¤p View ªº¥\¯à¡C
-         // ­Y«ö¤U Shift ¡A«h¬° grow ¼Ò¦¡¡F ­Y¤£«ö¡A«h¬° move ¼Ò¦¡¡C
-         // grow ¬°¾î¦V®É¡A¤@¦¸§ïÅÜ¨â­Ó¦r¤¸¡F¥H§K¦b¤¤¤å¨t²Î¤U¤è®Ø²£¥Í¶Ã½X¡C
+         // æŒ‰ Alt + (Upã€Downã€Leftã€Right) ç‚ºç§»å‹•æˆ–æ”¾å¤§ç¸®å° View çš„åŠŸèƒ½ã€‚
+         // è‹¥æŒ‰ä¸‹ Shift ï¼Œå‰‡ç‚º grow æ¨¡å¼ï¼› è‹¥ä¸æŒ‰ï¼Œå‰‡ç‚º move æ¨¡å¼ã€‚
+         // grow ç‚ºæ©«å‘æ™‚ï¼Œä¸€æ¬¡æ”¹è®Šå…©å€‹å­—å…ƒï¼›ä»¥å…åœ¨ä¸­æ–‡ç³»çµ±ä¸‹æ–¹æ¡†ç”¢ç”Ÿäº‚ç¢¼ã€‚
        case kbRight : if( moveFlag )
                         if( keyboard->isShiftPressed() )
                               desktop->growTop( 2, 0);
@@ -340,12 +341,12 @@ int MyApp::key_event( DS::Event &event )
 }
 
 int MyApp::from_control( DS::Event &event )
-{   // Timer and Idler ¬Ò¥Ñ¦¹¨ç¦¡¶Ç¨Æ¥ó¹L¨Ó
- static int x=9,counter=0,color=1;  // ³o¨ÇÀRºAÅÜ¼Æ±±¨î®y¼Ğ¡BÃC¦â¡B¤Î­p¼Æ¡C
+{   // Timer and Idler çš†ç”±æ­¤å‡½å¼å‚³äº‹ä»¶éä¾†
+ static int x=9,counter=0,color=1;  // é€™äº›éœæ…‹è®Šæ•¸æ§åˆ¶åº§æ¨™ã€é¡è‰²ã€åŠè¨ˆæ•¸ã€‚
 
  if( event.what() == DS::evTimer )
  {
-  // ­Y¬O¥Ñ timer ¶Ç¨Ó ,¦b¿Ã¹õ¥k¤W¨¤¦L¥X²{¦b®É¶¡¡C
+  // è‹¥æ˜¯ç”± timer å‚³ä¾† ,åœ¨è¢å¹•å³ä¸Šè§’å°å‡ºç¾åœ¨æ™‚é–“ã€‚
   char buf[30];
   time_t t = time (NULL);
   struct tm *tb = localtime (&t);
@@ -354,20 +355,20 @@ int MyApp::from_control( DS::Event &event )
   //mvwprintw(stdscr,0,70,"test timer");
   refresh();
 
-  // §Ú­Ì©T©w¥Ñ¥Dµ{¦¡¼Ò²Õ¨C 1/200 ¬í§ó·s¤@¦¸µe­±¡A¦Ó¤£³o¼Ë°µªº¥Øªº¬O¬°¤F¼W¶i¨t²Îªº®Ä²v¡C
+  // æˆ‘å€‘å›ºå®šç”±ä¸»ç¨‹å¼æ¨¡çµ„æ¯ 1/200 ç§’æ›´æ–°ä¸€æ¬¡ç•«é¢ï¼Œè€Œä¸é€™æ¨£åšçš„ç›®çš„æ˜¯ç‚ºäº†å¢é€²ç³»çµ±çš„æ•ˆç‡ã€‚
   //desktop->show();
  }
- else       // Idler ¨Æ¥ó²£¥Í¾¹²£¥Íªº¨Æ¥ó¥Ñ¦¹°Ï¶ô³B²z
- {    // ¦b¤U¤è¦L¥X¤@ªø±ø§Î ,¨Ã§ïÅÜÃC¦â ,¨Ã¹Á¸Õ©I¥s remove() °±¤îÅã¥Ü
+ else       // Idler äº‹ä»¶ç”¢ç”Ÿå™¨ç”¢ç”Ÿçš„äº‹ä»¶ç”±æ­¤å€å¡Šè™•ç†
+ {    // åœ¨ä¸‹æ–¹å°å‡ºä¸€é•·æ¢å½¢ ,ä¸¦æ”¹è®Šé¡è‰² ,ä¸¦å˜—è©¦å‘¼å« remove() åœæ­¢é¡¯ç¤º
 	 /*
   counter++;
-  if( counter >1000 )  // §Ú­Ì±±¨î¦¹­p¼Æ¾¹ªº­È¡A¥H©µ¿ğÅã¥Üªº³t«×¡C
-  {     if( x<70 )   x++;   // ¦L 70 ­Ó char(32) «á¡A§ïÅÜÃC¦â¡C
+  if( counter >1000 )  // æˆ‘å€‘æ§åˆ¶æ­¤è¨ˆæ•¸å™¨çš„å€¼ï¼Œä»¥å»¶é²é¡¯ç¤ºçš„é€Ÿåº¦ã€‚
+  {     if( x<70 )   x++;   // å° 70 å€‹ char(32) å¾Œï¼Œæ”¹è®Šé¡è‰²ã€‚
    else      
    {  
     x=9;
     if( color >14 ) 
-    { // Åã¥Ü 15 ºØÃC¦â«á¡A´N°±¤îÅã¥Ü®É¶¡©MÃC¦â
+    { // é¡¯ç¤º 15 ç¨®é¡è‰²å¾Œï¼Œå°±åœæ­¢é¡¯ç¤ºæ™‚é–“å’Œé¡è‰²
      //idler->remove( this );
      timer->remove( this ); 
     }
@@ -381,7 +382,7 @@ int MyApp::from_control( DS::Event &event )
  } // end else
 }
 
-  // ¦Û³]ªº®à­±­«µe¨ç¦¡
+  // è‡ªè¨­çš„æ¡Œé¢é‡ç•«å‡½å¼
 /*
 void myDesktop()
 {
@@ -399,7 +400,7 @@ int main( )
 {
  initscr();
  keypad(stdscr,true);
- DS::Controller drive;  // ¼Ğ·Çµ{¦¡¼gªk ,¬Û·í¤£¿à§a !!
+ DS::Controller drive;  // æ¨™æº–ç¨‹å¼å¯«æ³• ,ç›¸ç•¶ä¸è³´å§ !!
  //desktop->setGroundFunc( myDesktop );
  desktop->show();
  new MyApp;
