@@ -1,1 +1,9 @@
 a model/view/controll implementation text GUI system by ncurses.
+
+f5: new window
+f6: close window
+g: resize window
+m: move window
+tab: switch window
+
+[demo video](https://www.youtube.com/watch?v=zxfWM_VZzZI)
