@@ -22,7 +22,7 @@
 namespace DS
 {
  class Model;
- class DS::Event;
+ class Event;
  //enum ViewStatus {NORMAL=0,MAX=1,FOCUS=2,MOVE=4};// can use | combine these status
  const int NORMAL=0,MAX=1,FOCUS=2,MOVE=4;// can use | combine these status
  class View : public DS::Box

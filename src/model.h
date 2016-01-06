@@ -16,7 +16,7 @@ namespace DS
 {
  //class LView;
  //class ContlItem;
- class DS::View;
+ class View;
  class Model
  {
   public:
