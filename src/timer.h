@@ -67,7 +67,7 @@ namespace DS
  class Timer : public ControllerItem  // 時間之事件產生器
  {
   public:
-   static const int TIME_UP=1;
+   static const int TIME_UP = 1000;
    static void catch_alarm(int sig);
    static unsigned long int alarm(unsigned long int msec);
    Timer();
