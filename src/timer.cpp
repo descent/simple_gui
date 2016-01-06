@@ -83,9 +83,11 @@ void DS::Timer::catch_alarm(int sig)
 {
  timer_on=true;
  ++cur_time;
+#if 0
  //DS::alarm(TIME_UP);
  signal(sig,catch_alarm);
- Timer::alarm(TIME_UP);
+ // Timer::alarm(TIME_UP);
+#endif
 }
 
 
@@ -94,7 +96,7 @@ void DS::Timer::catch_alarm(int sig)
 unsigned long int DS::Timer::alarm(unsigned long int msec)
 {
  struct itimerval old_time,new_time;
- new_time.it_interval.tv_usec=0;
+ new_time.it_interval.tv_usec=msec;
  new_time.it_interval.tv_sec=0;
  new_time.it_value.tv_usec=msec;
  new_time.it_value.tv_sec=0;
