@@ -1,7 +1,7 @@
 //***************************************************************
 //*              Name of File : timer.cpp                       *
 //*              for :  Time-Event generator                    *
-//*                  by : ¥j²M¼w                                *
+//*                  by : å¤æ¸…å¾·                                *
 //***************************************************************
 
 #include "timer.h"
@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <fstream>
 
-// anonymous namespace ªí¥Ü¦b¸Ó namespace ¤ºªºÅÜ¼Æ¥u¯à¥Î¦b¸ÓÀÉ®×¤§¤º
+// anonymous namespace è¡¨ç¤ºåœ¨è©² namespace å…§çš„è®Šæ•¸åªèƒ½ç”¨åœ¨è©²æª”æ¡ˆä¹‹å…§
 namespace
 {
  //const int TIME_UP=1;
@@ -28,8 +28,8 @@ DS::TimerCounter::TimerCounter( Model *app, unsigned long msec ):_cur_time(0)
 
 }
 
-// ¨C 1 microsecond ©I¥s¤@¦¸,·í static ÅÜ¼Æ time ¬°©Ò³]©wªº®É¶¡ _time,
-// ©I¥s linkApp ¤§ from_controller()
+// æ¯ 1 microsecond å‘¼å«ä¸€æ¬¡,ç•¶ static è®Šæ•¸ time ç‚ºæ‰€è¨­å®šçš„æ™‚é–“ _time,
+// å‘¼å« linkApp ä¹‹ from_controller()
 void DS::TimerCounter::go() 
 {
  static int time=0;
@@ -61,7 +61,7 @@ DS::Timer::Timer()
 
 int DS::Timer::pool()
 {
- if (timer_on == true)  // timer_on ­Y¬° true ¡Aªí¥Ü 1 microsecond ªº¶¡¹j¤w¨ì
+ if (timer_on == true)  // timer_on è‹¥ç‚º true ï¼Œè¡¨ç¤º 1 microsecond çš„é–“éš”å·²åˆ°
  {
   std::vector<TimerCounter *> :: iterator it;
   for (it = _applier.begin() ; it != _applier.end() ; it++)
@@ -73,7 +73,7 @@ int DS::Timer::pool()
 
 void DS::Timer::apply( Model *app, unsigned int msec )
 {
- // ¨C¦h¤@­Ó¥Ó½ĞªÌ ,«K new ¤@­Ó TimerCounter »P¤§Ãìµ² ,µM«á¥[¤J¥Ó½ĞªÌ¦ê¦C¤¤§Y¥i
+ // æ¯å¤šä¸€å€‹ç”³è«‹è€… ,ä¾¿ new ä¸€å€‹ TimerCounter èˆ‡ä¹‹éˆçµ ,ç„¶å¾ŒåŠ å…¥ç”³è«‹è€…ä¸²åˆ—ä¸­å³å¯
  _applier.push_back( new TimerCounter( app ,msec ) );
 }
 
@@ -89,7 +89,7 @@ void DS::Timer::catch_alarm(int sig)
 }
 
 
-// ³]©w­p®É¾¹¥H microsecond ¬°³æ¦ì
+// è¨­å®šè¨ˆæ™‚å™¨ä»¥ microsecond ç‚ºå–®ä½
 // static function
 unsigned long int DS::Timer::alarm(unsigned long int msec)
 {

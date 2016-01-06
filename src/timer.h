@@ -3,7 +3,7 @@
  * $Author$
  * $Id$
  * $Date$
- * function : ®É¶¡²£¥Í¾¹¡A©Ò¥Ó½Ğªº®É¶¡¥H¬í¬°³æ¦ì
+ * function : æ™‚é–“ç”¢ç”Ÿå™¨ï¼Œæ‰€ç”³è«‹çš„æ™‚é–“ä»¥ç§’ç‚ºå–®ä½
  */
 
 #ifndef TIMER_H
@@ -23,10 +23,10 @@
 
 #include <vector>
 
-// TimerCounter ¬°¤@³]­p¥Î¨ÓºŞ²z¨C¤@­Ó®É¶¡¥Ó½ĞªÌªºÃş§O¡C­ÓÅé¤¤­p¿ı¤F©Ò¥Nªíªº¼Ò²Õ
-// ¤Î¥¦©Ò¥Ó½Ğªº®É¶¡¶¡¹j ,¨C 1/18 ¬í©I¥s¤@¦¸ ++ ¨ç¦¡ ,¦¹­ÓÅé¦Û°Ê²Î­p®É¶¡ ,¦Ó®É¶¡
-// ¤@¨ì ,¦Û°Ê±N°T®§¶Çµ¹©Ò¥Nªíªº­ÓÅé ,¤£»İµ{¦¡³]­pªÌ¦A¾Ş¤ß
-// ³Q§Ú©Ò§ó§ïªº timer ¥Ø«e¥u¯à¥H¬í¬°³æ¦ì¨Ó¥Ó½Ğ®É¶¡
+// TimerCounter ç‚ºä¸€è¨­è¨ˆç”¨ä¾†ç®¡ç†æ¯ä¸€å€‹æ™‚é–“ç”³è«‹è€…çš„é¡åˆ¥ã€‚å€‹é«”ä¸­è¨ˆéŒ„äº†æ‰€ä»£è¡¨çš„æ¨¡çµ„
+// åŠå®ƒæ‰€ç”³è«‹çš„æ™‚é–“é–“éš” ,æ¯ 1/18 ç§’å‘¼å«ä¸€æ¬¡ ++ å‡½å¼ ,æ­¤å€‹é«”è‡ªå‹•çµ±è¨ˆæ™‚é–“ ,è€Œæ™‚é–“
+// ä¸€åˆ° ,è‡ªå‹•å°‡è¨Šæ¯å‚³çµ¦æ‰€ä»£è¡¨çš„å€‹é«” ,ä¸éœ€ç¨‹å¼è¨­è¨ˆè€…å†æ“å¿ƒ
+// è¢«æˆ‘æ‰€æ›´æ”¹çš„ timer ç›®å‰åªèƒ½ä»¥ç§’ç‚ºå–®ä½ä¾†ç”³è«‹æ™‚é–“
 
 // function object
 /*
@@ -42,7 +42,7 @@ class FindModel
 
 namespace DS
 {
- // ³]©w­p®É¾¹¥H microsecond ¬°³æ¦ì
+ // è¨­å®šè¨ˆæ™‚å™¨ä»¥ microsecond ç‚ºå–®ä½
  //void catch_alarm(int sig);
 
  class TimerCounter
@@ -50,21 +50,21 @@ namespace DS
   //friend void DS::catch_alarm(int sig);
   public:
    TimerCounter( Model *app ,unsigned long msec );
-   // app ¬°®É¶¡¨ì®É©I¥s¤§¼Ò²Õ, msec ¬° microsecond
+   // app ç‚ºæ™‚é–“åˆ°æ™‚å‘¼å«ä¹‹æ¨¡çµ„, msec ç‚º microsecond
    //virtual unsigned is()  {  return TimerCounterCls;  }
-   void go(); //¨C 1 ¬í©I¥s¤@¦¸ ,¦¸¼Æ¤@¨ì,¦Û°Ê©I¥s linkApp ¤§ from_controller()
+   void go(); //æ¯ 1 ç§’å‘¼å«ä¸€æ¬¡ ,æ¬¡æ•¸ä¸€åˆ°,è‡ªå‹•å‘¼å« linkApp ä¹‹ from_controller()
    //const Model* getModel() { return _linkApp;  }
    TimerCounter() {}
 
   private:
-   unsigned long _time; // Model ¥Ó½Ğªº®É¶¡¡A¥H microsecond ¬°³æ¦ì
-   unsigned long _cur_time; // ¥Ø«e²Ö¿nªº®É¶¡¡A¥H microsecond ¬°³æ¦ì
+   unsigned long _time; // Model ç”³è«‹çš„æ™‚é–“ï¼Œä»¥ microsecond ç‚ºå–®ä½
+   unsigned long _cur_time; // ç›®å‰ç´¯ç©çš„æ™‚é–“ï¼Œä»¥ microsecond ç‚ºå–®ä½
 
-   DS::Model *_model;   // «O¦s»P¤§Ãìµ²ªº Model ¼Ò²Õ
-   DS::Event _event;  // ¤º³¡¨Ï¥Î¤§¨Æ¥ó¡Awhat °O¿ıµÛ evTimer
+   DS::Model *_model;   // ä¿å­˜èˆ‡ä¹‹éˆçµçš„ Model æ¨¡çµ„
+   DS::Event _event;  // å…§éƒ¨ä½¿ç”¨ä¹‹äº‹ä»¶ï¼Œwhat è¨˜éŒ„è‘— evTimer
  }; // end class TimerCounter
 
- class Timer : public ControllerItem  // ®É¶¡¤§¨Æ¥ó²£¥Í¾¹
+ class Timer : public ControllerItem  // æ™‚é–“ä¹‹äº‹ä»¶ç”¢ç”Ÿå™¨
  {
   public:
    static const int TIME_UP=1;
@@ -74,9 +74,9 @@ namespace DS
    //virtual unsigned is()  {  return TimerCls;  }
    virtual int pool();
    void apply( Model *app, unsigned int msec );
-       // ¦¹¨ç¦¡¨Ñ Model ¥Ó½Ğ Timer ¨Æ¥ó¤§¥Î
-       // app ¬°¥Ó½Ğ¤§ Model ¡A sec ¬°©I¥s¤§¶¡¹j,³æ¦ì¬°¬í
-   void remove( Model *app )  // ºM®ø­ì¥ı¥Ó½Ğªº Model
+       // æ­¤å‡½å¼ä¾› Model ç”³è«‹ Timer äº‹ä»¶ä¹‹ç”¨
+       // app ç‚ºç”³è«‹ä¹‹ Model ï¼Œ sec ç‚ºå‘¼å«ä¹‹é–“éš”,å–®ä½ç‚ºç§’
+   void remove( Model *app )  // æ’¤æ¶ˆåŸå…ˆç”³è«‹çš„ Model
    {
    }
   private:
