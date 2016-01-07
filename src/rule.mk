@@ -1,8 +1,9 @@
 CFLAGS=-g
 MYCFLAGS=
-MYCXXFLAGS =
+MYCXXFLAGS = -std=c++11 
 LD_FLAGS=
 CXX=g++
+#CXX=clang++-3.8
 
 # make CH=1 will use ccache
 ifdef CH
